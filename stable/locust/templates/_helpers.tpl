@@ -78,3 +78,11 @@ loadtest: {{ .Values.loadtest.name }}
 {{- printf .Values.loadtest.locust_lib_configmap -}}
 {{ end }}
 {{- end -}}
+
+{{- define "locust.data_configmap_name" -}}
+{{ if eq .Values.loadtest.locust_data_configmap "" -}}
+{{ template "locust.fullname" . }}-data
+{{- else -}}
+{{- printf .Values.loadtest.locust_data_configmap -}}
+{{ end }}
+{{- end -}}

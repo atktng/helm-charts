@@ -19,6 +19,7 @@ spec:
     metadata:
       annotations:
         checksum/config-locust-lib: {{ include (print $.Template.BasePath "/configmap-locust-lib.yaml") . | sha256sum }}
+        checksum/config-locust-data: {{ include (print $.Template.BasePath "/configmap-locust-data.yaml") . | sha256sum }}
         checksum/config-locust-locustfile: {{ include (print $.Template.BasePath "/configmap-locust-locustfile.yaml") . | sha256sum }}
         checksum/config-config: {{ include (print $.Template.BasePath "/configmap-config.yaml") . | sha256sum }}
         checksum/config-secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
@@ -61,6 +62,8 @@ spec:
             mountPath: /mnt/locust
           - name: locustlib
             mountPath: /mnt/locust/locustlib
+          - name: locustdata
+            mountPath: /mnt/locust/locustdata
           - name: config
             mountPath: /config
         env:
@@ -86,6 +89,9 @@ spec:
         - name: locustlib
           configMap:
             name: {{ template "locust.lib_configmap_name" . }}
+        - name: locustdata
+          configMap:
+            name: {{ template "locust.data_configmap_name" . }}
         - name: locustfile
           configMap:
             name: {{ template "locust.locustfile_configmap_name" . }}

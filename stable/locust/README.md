@@ -8,11 +8,12 @@ This chart will setup everything required to run a full distributed locust envir
 
 This chart will also create configmaps for storing the locust files in Kubernetes, this way there is no need to build custom docker images.
 
-By default it will install using an example locustfile and lib from [stable/locust/locustfiles/example](https://github.com/deliveryhero/helm-charts/tree/master/stable/locust/locustfiles/example). When you want to provide your own locustfile, you will need to create 2 configmaps using the structure from that example:
+By default it will install using an example locustfi, lib and data from [stable/locust/locustfiles/example](https://github.com/deliveryhero/helm-charts/tree/master/stable/locust/locustfiles/example). When you want to provide your own locustfile, you will need to create 2 configmaps using the structure from that example:
 
 ```console
 kubectl create configmap my-loadtest-locustfile --from-file path/to/your/main.py
 kubectl create configmap my-loadtest-lib --from-file path/to/your/locustlib/
+kubectl create configmap my-loadtest-data --from-file path/to/your/locustdata/
 ```
 
 And then install the chart passing the names of those configmaps as values:
@@ -22,6 +23,7 @@ helm install locust deliveryhero/locust \
   --set loadtest.name=my-loadtest \
   --set loadtest.locust_locustfile_configmap=my-loadtest-locustfile \
   --set loadtest.locust_lib_configmap=my-loadtest-lib
+  --set loadtest.locust_data_configmap=my-loadtest-data
 ```
 
 **Homepage:** <https://github.com/locustio/locust>
@@ -74,6 +76,7 @@ helm install my-release deliveryhero/locust -f values.yaml
 | ingress.hosts[0].host | string | `"chart-example.local"` |  |
 | ingress.tls | list | `[]` |  |
 | loadtest.environment | object | `{}` | environment variables used in the load test |
+| loadtest.locust_data_configmap | string | `""` | name of a configmap containing your locustdata |
 | loadtest.locust_host | string | `"https://www.google.com"` | the host you will load test |
 | loadtest.locust_lib_configmap | string | `""` | name of a configmap containing your locustlib |
 | loadtest.locust_locustfile | string | `"main.py"` | the name of the locustfile |

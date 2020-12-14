@@ -7,6 +7,8 @@ loadtest:
   locust_locustfile_configmap: ""
   # loadtest.locust_lib_configmap -- name of a configmap containing your locustlib
   locust_lib_configmap: ""
+  # loadtest.locust_data_configmap -- name of a configmap containing your locustdata
+  locust_data_configmap: ""
   # loadtest.locust_host -- the host you will load test
   locust_host: https://www.google.com
   # loadtest.pip_packages -- a list of extra python pip packages to install

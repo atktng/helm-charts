@@ -14,11 +14,12 @@ description: |
 
   This chart will also create configmaps for storing the locust files in Kubernetes, this way there is no need to build custom docker images.
 
-  By default it will install using an example locustfile and lib from [stable/locust/locustfiles/example](https://github.com/deliveryhero/helm-charts/tree/master/stable/locust/locustfiles/example). When you want to provide your own locustfile, you will need to create 2 configmaps using the structure from that example:
+  By default it will install using an example locustfi, lib and data from [stable/locust/locustfiles/example](https://github.com/deliveryhero/helm-charts/tree/master/stable/locust/locustfiles/example). When you want to provide your own locustfile, you will need to create 2 configmaps using the structure from that example:
 
   ```console
   kubectl create configmap my-loadtest-locustfile --from-file path/to/your/main.py
   kubectl create configmap my-loadtest-lib --from-file path/to/your/locustlib/
+  kubectl create configmap my-loadtest-data --from-file path/to/your/locustdata/
   ```
 
   And then install the chart passing the names of those configmaps as values:
@@ -28,4 +29,5 @@ description: |
     --set loadtest.name=my-loadtest \
     --set loadtest.locust_locustfile_configmap=my-loadtest-locustfile \
     --set loadtest.locust_lib_configmap=my-loadtest-lib
+    --set loadtest.locust_data_configmap=my-loadtest-data
   ```
