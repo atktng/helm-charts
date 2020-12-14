@@ -59,8 +59,8 @@ spec:
         volumeMounts:
           - name: locustfile
             mountPath: /mnt/locust
-          - name: lib
-            mountPath: /mnt/locust/lib
+          - name: locustlib
+            mountPath: /mnt/locust/locustlib
           - name: config
             mountPath: /config
         env:
@@ -83,7 +83,7 @@ spec:
 {{- end }}
       restartPolicy: Always
       volumes:
-        - name: lib
+        - name: locustlib
           configMap:
             name: {{ template "locust.lib_configmap_name" . }}
         - name: locustfile

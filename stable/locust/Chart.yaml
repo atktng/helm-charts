@@ -18,7 +18,7 @@ description: |
 
   ```console
   kubectl create configmap my-loadtest-locustfile --from-file path/to/your/main.py
-  kubectl create configmap my-loadtest-lib --from-file path/to/your/lib/
+  kubectl create configmap my-loadtest-lib --from-file path/to/your/locustlib/
   ```
 
   And then install the chart passing the names of those configmaps as values:

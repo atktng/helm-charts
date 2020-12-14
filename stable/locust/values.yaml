@@ -5,7 +5,7 @@ loadtest:
   locust_locustfile: main.py
   # loadtest.locust_locustfile_configmap -- name of a configmap containing your locustfile
   locust_locustfile_configmap: ""
-  # loadtest.locust_lib_configmap -- name of a configmap containing your lib
+  # loadtest.locust_lib_configmap -- name of a configmap containing your locustlib
   locust_lib_configmap: ""
   # loadtest.locust_host -- the host you will load test
   locust_host: https://www.google.com

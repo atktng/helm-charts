@@ -12,7 +12,7 @@ By default it will install using an example locustfile and lib from [stable/locu
 
 ```console
 kubectl create configmap my-loadtest-locustfile --from-file path/to/your/main.py
-kubectl create configmap my-loadtest-lib --from-file path/to/your/lib/
+kubectl create configmap my-loadtest-lib --from-file path/to/your/locustlib/
 ```
 
 And then install the chart passing the names of those configmaps as values:
@@ -75,7 +75,7 @@ helm install my-release deliveryhero/locust -f values.yaml
 | ingress.tls | list | `[]` |  |
 | loadtest.environment | object | `{}` | environment variables used in the load test |
 | loadtest.locust_host | string | `"https://www.google.com"` | the host you will load test |
-| loadtest.locust_lib_configmap | string | `""` | name of a configmap containing your lib |
+| loadtest.locust_lib_configmap | string | `""` | name of a configmap containing your locustlib |
 | loadtest.locust_locustfile | string | `"main.py"` | the name of the locustfile |
 | loadtest.locust_locustfile_configmap | string | `""` | name of a configmap containing your locustfile |
 | loadtest.name | string | `"example"` | a name used for resources and settings in this load test |
